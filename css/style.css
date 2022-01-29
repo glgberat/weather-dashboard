@@ -1,3 +1,11 @@
+* {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
+
+}
+
+
+
 .hero {
     background: linear-gradient( to right, #5261eb, #050b46);
     color: white
@@ -15,21 +23,15 @@
 
 .btn {
   font-size: 1.3rem;
-  /* text-decoration: none; */
+  
   padding: 6px 5px;
   width: 100%;
-  /* display: block; */
-  margin: 5px 0;
+
+  margin: 15px 0;
   border-radius: .3rem;
   color: white;
   border: none;
   outline: none;
   background-color:#4790f0cb;
   font-weight: bold;
-}
-h2{
-
-  font-weight: bold;
-  font-family: Arial, Helvetica, sans-serif;
-
 }
