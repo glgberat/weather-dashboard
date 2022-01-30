@@ -35,3 +35,41 @@
   background-color:#4790f0cb;
   font-weight: bold;
 }
+
+.green{
+  background-color: green;
+  color: white;
+}
+
+.red{
+  background-color: red;
+  color: white;
+}
+
+.yellow{
+  background-color: yellow;
+  color: black;
+}
+
+.orange{
+  background-color: orange;
+  color: black;
+}
+li{
+
+  list-style-type: none;
+  font-size: 16pt;
+
+}
+
+.card-deck ul{
+
+background-color: #113b79;
+color: white;
+padding: 5px;
+}
+
+.border{
+  border: 4px;
+
+}
