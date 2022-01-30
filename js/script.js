@@ -69,10 +69,10 @@ function display5DayWeather(town)
                 var iconcode = town.list[i].weather[0].icon;
               
                var date = new Date(town.list[i].dt*1000);
-               
-               console.log("Date: "+date.getDate()+
+               date=date.toLocaleDateString("en-US");
+               /*console.log("Date: "+date.getDate()+
                          "/"+(date.getMonth()+1)+
-                         "/"+date.getFullYear());
+                         "/"+date.getFullYear()); */
                 
 
                 var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
@@ -121,6 +121,7 @@ var formSubmitHandler = function(event) {
   var cityname = cityInputEl.value.trim();
 
   if (cityname) {
+    saveCity(cityname);
     getCityForecast(cityname);
   } else {
     alert("Please enter a City");
@@ -164,6 +165,79 @@ var formSubmitHandler = function(event) {
   });
 
   };
+
+
+  // Function to save the city to localStorage
+var saveCity = (newCity) => {
+  let cityExists = false;
+  // Check if City exists in local storage
+  for (let i = 0; i < localStorage.length; i++) {
+      if (localStorage["cities" + i] === newCity) {
+          cityExists = true;
+          break;
+      }
+  }
+  // Save to localStorage if city is new
+  if (cityExists === false) {
+      localStorage.setItem('cities'+localStorage.length, newCity);
+  }
+}
+
+var renderCities = () => {
+  $('#city-results').empty();
+  // If localStorage is empty
+  if (localStorage.length===0){
+      if (lastCity){
+          $('#location').attr("value", lastCity);
+      } else {
+          $('#location').attr("value", "Austin");
+      }
+  } else {
+      // Build key of last city written to localStorage
+      let lastCityKey="cities"+(localStorage.length-1);
+      lastCity=localStorage.getItem(lastCityKey);
+      // Set search input to last city searched
+      $('#location').attr("value", lastCity);
+      // Append stored cities to page
+      for (let i = 0; i < localStorage.length; i++) {
+          let city = localStorage.getItem("cities" + i);
+          let cityEl;
+          // Set to lastCity if currentCity not set
+          if (currentCity===""){
+              currentCity=lastCity;
+          }
+          // Set button class to active for currentCity
+          if (city === currentCity) {
+              cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
+          } else {
+              cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
+          } 
+          // Append city to page
+          $('#city-results').prepend(cityEl);
+      }
+      
+  }
+  
+}
+
+
+
+// New city search button event listener
+$('#search-button').on("click", (event) => {
+  event.preventDefault();
+  currentCity = $('#location').val();
+  formSubmitHandler(event);
+  });
+  
+  // Old searched cities buttons event listener
+  $('#city-results').on("click", (event) => {
+      event.preventDefault();
+      $('#location').val(event.target.textContent);
+      currentCity=$('#location').val();
+      formSubmitHandler(event);
+  });
+
+renderCities();
   
   searchFormEl.addEventListener("submit", formSubmitHandler);
 
