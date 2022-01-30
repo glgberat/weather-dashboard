@@ -17,7 +17,7 @@ var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="
 var iconcode = city.weather[0].icon;
 var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
 cityH1EL.innerHTML="";
-date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 cityH1EL.innerHTML=city.name + " " +"("+ date +")" + " " + "<img src=" + iconurl +">";
 document.getElementById('currentTemp').innerHTML="Temp: "+ city.main.temp+"°F";
 document.getElementById('currentWind').innerHTML="Wind: "+ city.wind.speed+" MPH";
@@ -208,9 +208,9 @@ var renderCities = () => {
           }
           // Set button class to active for currentCity
           if (city === currentCity) {
-              cityEl = `<button type="button" class="list-group-item list-group-item-action active">${city}</button></li>`;
+              cityEl = `<button type="button" class="list-group-item list-group-item-action active mb-3 bg-light text-center>${city}</button></li>`;
           } else {
-              cityEl = `<button type="button" class="list-group-item list-group-item-action">${city}</button></li>`;
+              cityEl = `<button type="button" class="list-group-item list-group-item-action mb-3 bg-light text-center ">${city}</button></li>`;
           } 
           // Append city to page
           $('#city-results').prepend(cityEl);
