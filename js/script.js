@@ -7,9 +7,7 @@ var cardsEl= document.querySelector("#cards");
 var lat;
 var lon;
 var today = new Date();
-var dayafter =  new Date();
-dayafter.setDate(today.getDate() + 1);
-var date =(today.getMonth()+1) +'-'+ today.getDate()+'-'+ today.getFullYear();
+
 var test;
 
 var displayCurrentWeather = function(city) {
@@ -19,8 +17,8 @@ var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="
 var iconcode = city.weather[0].icon;
 var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
 cityH1EL.innerHTML="";
-
-cityH1EL.innerHTML=city.name + " " + date + " " + "<img src=" + iconurl +">";
+date = (today.getMonth()+1)+'-'+today.getDate()+'-'+today.getFullYear();
+cityH1EL.innerHTML=city.name + " " +"("+ date +")" + " " + "<img src=" + iconurl +">";
 document.getElementById('currentTemp').innerHTML="Temp: "+ city.main.temp+"°F";
 document.getElementById('currentWind').innerHTML="Wind: "+ city.wind.speed+" MPH";
 document.getElementById('currentHumidty').innerHTML="Humidty: "+ city.main.humidity+" %";
@@ -67,14 +65,15 @@ function display5DayWeather(town)
     console.log(town);
                 cardsEl.innerHTML="";
 
-            for(let i=0;i<5;i++){
+            for(let j=0,i=0;j<5;i+=8){
                 var iconcode = town.list[i].weather[0].icon;
-                var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+(today.getDate()+i);
-
-                console.log(town.list[i].dt);
-                console.log(town.list[i].main.temp);
-                console.log(town.list[i].main.humidity);
-                console.log(town.list[i].wind.speed);
+              
+               var date = new Date(town.list[i].dt*1000);
+               
+               console.log("Date: "+date.getDate()+
+                         "/"+(date.getMonth()+1)+
+                         "/"+date.getFullYear());
+                
 
                 var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
                 
@@ -100,7 +99,8 @@ function display5DayWeather(town)
                 var humEl=document.createElement("li");
                 humEl.innerHTML="Humidty: " + town.list[i].main.humidity;
                 cardUl.appendChild(humEl);
-        
+
+                j++;        
         
             }
 
@@ -153,6 +153,7 @@ var formSubmitHandler = function(event) {
   fetch(apiUrl).then(function(response) {
       
     response.json().then(function(data) {
+      console.log(data);
         display5DayWeather(data);
           
       
