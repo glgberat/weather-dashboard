@@ -10,7 +10,7 @@ var today = new Date();
 
 var test;
 
-var displayCurrentWeather = function(city) {
+function displayCurrentWeather(city) {
 lat=city.coord.lon;
 lon=city.coord.lat;
 var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+ lon + "&appid=740f604db53ec85433f6fefa46149173";  
@@ -237,6 +237,9 @@ $('#search-button').on("click", (event) => {
       formSubmitHandler(event);
   });
 
+let defaultcity="Queens";
+
+getCityForecast(defaultcity);  
 renderCities();
   
   searchFormEl.addEventListener("submit", formSubmitHandler);
