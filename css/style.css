@@ -83,3 +83,10 @@ h2,h1{
 #city-results{
 white-space: pre-wrap;
 }
+
+hr{
+border-width: 3px;
+color: rgb(161, 161, 161);
+
+}
+

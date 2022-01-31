@@ -1,3 +1,4 @@
+// Global Variables
 var searchFormEl=document.querySelector("#search-form");
 var cityInputEl = document.querySelector("#location");
 var currentEl = document.querySelector("#current");
@@ -6,22 +7,28 @@ var uvEl=document.querySelector("#currentUV");
 var cardsEl= document.querySelector("#cards");
 var lat;
 var lon;
-var today = new Date();
+var today = new Date(); //variable to hold current date provided by Operating System 
+var currentCity = "";
+var lastCity = "";
 
 var test;
-
+//Function to process current weather
 function displayCurrentWeather(city) {
 lat=city.coord.lon;
 lon=city.coord.lat;
+//calling an api to get UV index data
 var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+ lon + "&appid=740f604db53ec85433f6fefa46149173";  
 var iconcode = city.weather[0].icon;
 var iconurl = "https://openweathermap.org/img/w/" + iconcode +".png";
 cityH1EL.innerHTML="";
+
+//current date assigned 
 date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 cityH1EL.innerHTML=city.name + " " +"("+ date +")" + " " + "<img src=" + iconurl +">";
 document.getElementById('currentTemp').innerHTML="Temp: "+ city.main.temp+"°F";
 document.getElementById('currentWind').innerHTML="Wind: "+ city.wind.speed+" MPH";
 document.getElementById('currentHumidty').innerHTML="Humidty: "+ city.main.humidity+" %";
+//fetching UV index API
 fetch(oneapiurl).then(function(response) {
     response.json().then(function(data) {
         var clr=uvindexColor(data.current.uvi);
@@ -36,7 +43,7 @@ fetch(oneapiurl).then(function(response) {
 }
 
 
-
+//UV index color is assigned in this function
 
 function uvindexColor(x){
 if(x<=2)
@@ -58,25 +65,26 @@ else {
      
 
 }
+
+// 5 day Forecast weather function
 function display5DayWeather(town)
 {
     var today = new Date();
     
-    console.log(town);
+    
                 cardsEl.innerHTML="";
 
-            for(let j=0,i=0;j<5;i+=8){
-                var iconcode = town.list[i].weather[0].icon;
+            for(let j=0,i=0;j<5;i+=8){ //for loop to 5 hour forescast 
+                var iconcode = town.list[i].weather[0].icon; //weather icon assigned here
               
-               var date = new Date(town.list[i].dt*1000);
+               var date = new Date(town.list[i].dt*1000); //UNIX tyoe date converted readable type in here
                date=date.toLocaleDateString("en-US");
-               /*console.log("Date: "+date.getDate()+
-                         "/"+(date.getMonth()+1)+
-                         "/"+date.getFullYear()); */
+             
                 
 
                 var iconurl = "https://openweathermap.org/img/w/" + iconcode +".png";
                 
+                //DOM elements created and manipulated here
                 var bdcardEl=document.createElement("div");
                 bdcardEl.className="card-body";
                 cardsEl.appendChild(bdcardEl);
@@ -114,7 +122,7 @@ function display5DayWeather(town)
 }
 
 
-
+//Searched City data received and processed here
 var formSubmitHandler = function(event) {
     event.preventDefault();
     // get value from input element
@@ -131,9 +139,9 @@ var formSubmitHandler = function(event) {
   
 
 
-  
+  //Api called here for current weather
   var getCityForecast = function(city) {
-    // format the github api url
+    // format api url using searched city query
     var apiUrl = "https://api.openweathermap.org/data/2.5/weather?q="+city+"&units=imperial&appid=740f604db53ec85433f6fefa46149173";
   
     // make a get request to url
@@ -148,6 +156,8 @@ var formSubmitHandler = function(event) {
             
       });
     });
+
+    //5 day Forecast Api called here
     
   apiUrl = "https://api.openweathermap.org/data/2.5/forecast?q="+city+"&units=imperial&appid=740f604db53ec85433f6fefa46149173";
   
@@ -190,7 +200,7 @@ var renderCities = () => {
       if (lastCity){
           $('#location').attr("value", lastCity);
       } else {
-          $('#location').attr("value", "Austin");
+          $('#location').attr("value", "Queens");
       }
   } else {
       // Build key of last city written to localStorage
@@ -237,11 +247,14 @@ $('#search-button').on("click", (event) => {
       formSubmitHandler(event);
   });
 
+//Default page and City Weather called here
 let defaultcity="Queens";
 
 getCityForecast(defaultcity);  
 renderCities();
-  
+
+  //Search Button listener
+
   searchFormEl.addEventListener("submit", formSubmitHandler);
 
 
