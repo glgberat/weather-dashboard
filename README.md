@@ -1,8 +1,9 @@
 # Weather Dashboard
 
 ## Purpose
- A simple calendar application that allows a user to save events for each hour of the day. This app will run in the browser and feature dynamically updated HTML and CSS powered by jQuery.
-## Built With
+ A weather dashboard that will run in the browser and feature dynamically updated HTML and CSS.
+By using the OpenWeather One Call API to retrieve weather data for cities, searched cities are stored locally to retrive it again.
+
 * HTML
 * CSS
 * Javascript
@@ -13,9 +14,9 @@
 https://glgberat.github.io/weather-dashboard/
 
 ## Screenshots
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/assets/screenshot1.png)
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/assets/screenshot2.png)
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/assets/screenshot3.png)
+![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot1.png)
+![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot2.png)
+![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot3.png)
 
 
 ## Contribution
