@@ -15,7 +15,7 @@ lat=city.coord.lon;
 lon=city.coord.lat;
 var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+ lon + "&appid=740f604db53ec85433f6fefa46149173";  
 var iconcode = city.weather[0].icon;
-var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
+var iconurl = "https://openweathermap.org/img/w/" + iconcode +".png";
 cityH1EL.innerHTML="";
 date = (today.getMonth()+1)+'/'+today.getDate()+'/'+today.getFullYear();
 cityH1EL.innerHTML=city.name + " " +"("+ date +")" + " " + "<img src=" + iconurl +">";
@@ -75,7 +75,7 @@ function display5DayWeather(town)
                          "/"+date.getFullYear()); */
                 
 
-                var iconurl = "http://openweathermap.org/img/w/" + iconcode +".png";
+                var iconurl = "https://openweathermap.org/img/w/" + iconcode +".png";
                 
                 var bdcardEl=document.createElement("div");
                 bdcardEl.className="card-body";
