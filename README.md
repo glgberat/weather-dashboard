@@ -14,9 +14,9 @@ By using the OpenWeather One Call API to retrieve weather data for cities, searc
 https://glgberat.github.io/weather-dashboard/
 
 ## Screenshots
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot1.png)
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot2.png)
-![Work-Day-Scheduler](https://glgberat.github.io/weather-dashboard/screenshot3.png)
+![Weather-Dashboard](https://glgberat.github.io/weather-dashboard/screenshot1.png)
+![Weather-Dashboard](https://glgberat.github.io/weather-dashboard/screenshot2.png)
+![Weather-Dashboard](https://glgberat.github.io/weather-dashboard/screenshot3.png)
 
 
 ## Contribution
