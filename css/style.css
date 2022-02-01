@@ -64,7 +64,7 @@ li{
 
 .card-deck ul{
 
-background-color: #1f509bd8;
+background-color: #33475A;
 color: white;
 padding: 5px;
 }
@@ -90,3 +90,6 @@ color: rgb(161, 161, 161);
 
 }
 
+.bg-light {
+  background-color: #B7B7B7!important;
+}
