@@ -32,8 +32,6 @@ document.getElementById('currentHumidty').innerHTML="Humidty: "+ city.main.humid
 fetch(oneapiurl).then(function(response) {
     response.json().then(function(data) {
 
-      console.log(data.current.uvi);
-      console.log(data);
         var clr=uvindexColor(data.current.uvi);
         
         document.getElementById('currentUV').innerHTML="UV Index: "+ "<span id=uvspan class="+ clr +"> "+ data.current.uvi +"</span>";
