@@ -14,10 +14,10 @@ var lastCity = "";
 var test;
 //Function to process current weather
 function displayCurrentWeather(city) {
-lat=city.coord.lon;
-lon=city.coord.lat;
+lat=city.coord.lat;
+lon=city.coord.lon;
 //calling an api to get UV index data
-var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+ lon + "&appid=740f604db53ec85433f6fefa46149173";  
+var oneapiurl="https://api.openweathermap.org/data/2.5/onecall?lat="+lat+"&lon="+ lon +"&exclude=hourly,daily,minutely&appid=740f604db53ec85433f6fefa46149173";  
 var iconcode = city.weather[0].icon;
 var iconurl = "https://openweathermap.org/img/w/" + iconcode +".png";
 cityH1EL.innerHTML="";
@@ -31,6 +31,9 @@ document.getElementById('currentHumidty').innerHTML="Humidty: "+ city.main.humid
 //fetching UV index API
 fetch(oneapiurl).then(function(response) {
     response.json().then(function(data) {
+
+      console.log(data.current.uvi);
+      console.log(data);
         var clr=uvindexColor(data.current.uvi);
         
         document.getElementById('currentUV').innerHTML="UV Index: "+ "<span id=uvspan class="+ clr +"> "+ data.current.uvi +"</span>";
@@ -164,7 +167,6 @@ var formSubmitHandler = function(event) {
   fetch(apiUrl).then(function(response) {
       
     response.json().then(function(data) {
-      console.log(data);
         display5DayWeather(data);
           
       
